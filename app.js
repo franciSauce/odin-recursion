@@ -16,3 +16,15 @@ function fibs(n) {
 console.log(fibs(10));
 
 // 2. Recursion
+function fibsRec(n) {
+    if (n <= 0) return [];
+    if (n === 1) return [0];
+    if (n === 2) return [0, 1];
+
+    const nextNumRec = fibsRec(n - 1);
+    nextNumRec.push(nextNumRec[nextNumRec.length - 1] + nextNumRec[nextNumRec.length - 2]);
+    return nextNumRec;
+}
+
+console.log(fibsRec(15));
+
