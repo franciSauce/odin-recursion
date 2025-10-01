@@ -13,7 +13,9 @@ function fibs(n) {
     return nextNum;
 }
 
-console.log(fibs(10));
+// console.table(fibs(10));
+// console.table(fibs(8));
+// console.table(fibs(12));
 
 // 2. Recursion
 function fibsRec(n) {
@@ -26,5 +28,50 @@ function fibsRec(n) {
     return nextNumRec;
 }
 
-console.log(fibsRec(15));
+// console.table(fibsRec(15));
+// console.table(fibsRec(18));
+// console.table(fibsRec(21));
 
+// Merge sort Methodology
+function mergeSort(array) {
+    if (array.length <= 1) return array;
+
+    const mid = Math.floor(array.length / 2);
+    const leftHalf = array.slice(0, mid);
+    const rightHalf = array.slice(mid);
+
+    const sortLeft = mergeSort(leftHalf);
+    const sortRight = mergeSort(rightHalf);
+
+    return merge(sortLeft, sortRight);
+}
+
+function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    while (leftIndex < left.length) {
+        result.push(left[leftIndex]);
+        leftIndex++;
+    }
+
+    while (rightIndex < right.length) {
+        result.push(right[rightIndex]);
+        rightIndex++;
+    }
+
+    return result;
+}
+
+console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
